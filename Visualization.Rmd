@@ -1,0 +1,166 @@
+---
+title: "Visualization"
+author: "RUPESH ANUSURI"
+date: "Submission time: May 26, 2022 at 11:00PM EST"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load packages
+
+```{r, load_packages}
+library(tidyverse)
+library(modeldata)
+library(tidymodels)
+library(reshape2)
+library(patchwork)
+#library(yardstick)
+```
+
+```{r}
+library(dplyr)
+library(h2o)
+library(rsample)
+```
+
+```{r}
+#installed.packages()
+meats1 = as.data.frame(meats)
+meats_long = melt(meats1, id = "x_001")
+```
+
+```{r}
+ggp2 <- ggplot(meats_long,            # Create ggplot2 plot
+               aes(x = "x_001",
+                   y = value,
+                   color = variable)) +
+  geom_line()
+ggp2 
+```
+```{r}
+p1 <- ggplot(meats)+
+  geom_density(aes(x=x_001))+ geom_density(aes(x=x_002))+ geom_density(aes(x=x_003))+ 
+  geom_density(aes(x=x_004))+ geom_density(aes(x=x_005))+ geom_density(aes(x=x_006))+ 
+  geom_density(aes(x=x_007))+ geom_density(aes(x=x_008))+ geom_density(aes(x=x_009))+ 
+  geom_density(aes(x=x_010))
+  labs(title="x_001 to x_010")
+  
+p2 <- ggplot(meats)+
+  geom_density(aes(x=x_011))+ geom_density(aes(x=x_012))+ geom_density(aes(x=x_013))+ 
+  geom_density(aes(x=x_014))+ geom_density(aes(x=x_015))+ geom_density(aes(x=x_016))+ 
+  geom_density(aes(x=x_017))+ geom_density(aes(x=x_018))+ geom_density(aes(x=x_019))+ 
+  geom_density(aes(x=x_020))
+  labs(title="x_011 to x_020")
+  
+p3 <- ggplot(meats)+
+  geom_density(aes(x=x_021))+ geom_density(aes(x=x_022))+ geom_density(aes(x=x_023))+ 
+  geom_density(aes(x=x_024))+ geom_density(aes(x=x_025))+ geom_density(aes(x=x_026))+ 
+  geom_density(aes(x=x_027))+ geom_density(aes(x=x_028))+ geom_density(aes(x=x_029))+ 
+  geom_density(aes(x=x_030))
+  labs(title="x_021 to x_030")
+
+p4 <- ggplot(meats)+
+  geom_density(aes(x=x_031))+ geom_density(aes(x=x_032))+ geom_density(aes(x=x_033))+ 
+  geom_density(aes(x=x_034))+ geom_density(aes(x=x_035))+ geom_density(aes(x=x_036))+ 
+  geom_density(aes(x=x_037))+ geom_density(aes(x=x_038))+ geom_density(aes(x=x_039))+ 
+  geom_density(aes(x=x_040))
+  labs(title="x_031 to x_040")
+  
+p5 <- ggplot(meats)+
+  geom_density(aes(x=x_041))+ geom_density(aes(x=x_042))+ geom_density(aes(x=x_043))+ 
+  geom_density(aes(x=x_044))+ geom_density(aes(x=x_045))+ geom_density(aes(x=x_046))+ 
+  geom_density(aes(x=x_047))+ geom_density(aes(x=x_048))+ geom_density(aes(x=x_049))+ 
+  geom_density(aes(x=x_050))
+  labs(title="x_041 to x_050")
+  
+p6 <- ggplot(meats)+
+  geom_density(aes(x=x_051))+ geom_density(aes(x=x_052))+ geom_density(aes(x=x_053))+ 
+  geom_density(aes(x=x_054))+ geom_density(aes(x=x_055))+ geom_density(aes(x=x_056))+ 
+  geom_density(aes(x=x_057))+ geom_density(aes(x=x_058))+ geom_density(aes(x=x_059))+ 
+  geom_density(aes(x=x_060))
+  labs(title="x_051 to x_060")
+  
+p7 <- ggplot(meats)+
+  geom_density(aes(x=x_061))+ geom_density(aes(x=x_062))+ geom_density(aes(x=x_063))+ 
+  geom_density(aes(x=x_064))+ geom_density(aes(x=x_065))+ geom_density(aes(x=x_066))+ 
+  geom_density(aes(x=x_067))+ geom_density(aes(x=x_068))+ geom_density(aes(x=x_069))+ 
+  geom_density(aes(x=x_070))
+  labs(title="x_061 to x_070")
+  
+p8 <- ggplot(meats)+
+  geom_density(aes(x=x_071))+ geom_density(aes(x=x_072))+ geom_density(aes(x=x_073))+ 
+  geom_density(aes(x=x_074))+ geom_density(aes(x=x_075))+ geom_density(aes(x=x_076))+ 
+  geom_density(aes(x=x_077))+ geom_density(aes(x=x_078))+ geom_density(aes(x=x_079))+ 
+  geom_density(aes(x=x_080))
+  labs(title="x_071 to x_080")
+  
+p9 <- ggplot(meats)+
+  geom_density(aes(x=x_081))+ geom_density(aes(x=x_082))+ geom_density(aes(x=x_083))+ 
+  geom_density(aes(x=x_084))+ geom_density(aes(x=x_085))+ geom_density(aes(x=x_086))+ 
+  geom_density(aes(x=x_087))+ geom_density(aes(x=x_088))+ geom_density(aes(x=x_089))+ 
+  geom_density(aes(x=x_090))
+  labs(title="x_081 to x_090")
+  
+p10 <- ggplot(meats)+
+  geom_density(aes(x=x_091))+ geom_density(aes(x=x_092))+ geom_density(aes(x=x_093))+ 
+  geom_density(aes(x=x_094))+ geom_density(aes(x=x_095))+ geom_density(aes(x=x_096))+ 
+  geom_density(aes(x=x_097))+ geom_density(aes(x=x_098))+ geom_density(aes(x=x_099))+ 
+  geom_density(aes(x=x_100))
+  labs(title="x_091 to x_100")
+```
+
+```{r}
+p1+p2+p3 / (p4+p5+p6)
+```
+
+```{r}
+ggplot(meats)+
+  geom_density(aes(x=x_001))+ geom_density(aes(x=x_002))+ geom_density(aes(x=x_003))+ 
+  geom_density(aes(x=x_004))+ geom_density(aes(x=x_005))+ geom_density(aes(x=x_006))+ 
+  geom_density(aes(x=x_007))+ geom_density(aes(x=x_008))+ geom_density(aes(x=x_009))+ 
+  geom_density(aes(x=x_010), colour = "red")+
+  geom_density(aes(x=x_011))+ geom_density(aes(x=x_012))+ geom_density(aes(x=x_013))+ 
+  geom_density(aes(x=x_014))+ geom_density(aes(x=x_015))+ geom_density(aes(x=x_016))+ 
+  geom_density(aes(x=x_017))+ geom_density(aes(x=x_018))+ geom_density(aes(x=x_019))+ 
+  geom_density(aes(x=x_020), colour = "red")+
+  geom_density(aes(x=x_021))+ geom_density(aes(x=x_022))+ geom_density(aes(x=x_023))+ 
+  geom_density(aes(x=x_024))+ geom_density(aes(x=x_025))+ geom_density(aes(x=x_026))+ 
+  geom_density(aes(x=x_027))+ geom_density(aes(x=x_028))+ geom_density(aes(x=x_029))+ 
+  geom_density(aes(x=x_030), colour = "red")+
+  geom_density(aes(x=x_031))+ geom_density(aes(x=x_032))+ geom_density(aes(x=x_033))+ 
+  geom_density(aes(x=x_034))+ geom_density(aes(x=x_035))+ geom_density(aes(x=x_036))+ 
+  geom_density(aes(x=x_037))+ geom_density(aes(x=x_038))+ geom_density(aes(x=x_039))+ 
+  geom_density(aes(x=x_040), colour = "red")+
+  geom_density(aes(x=x_041))+ geom_density(aes(x=x_042))+ geom_density(aes(x=x_043))+ 
+  geom_density(aes(x=x_044))+ geom_density(aes(x=x_045))+ geom_density(aes(x=x_046))+ 
+  geom_density(aes(x=x_047))+ geom_density(aes(x=x_048))+ geom_density(aes(x=x_049))+ 
+  geom_density(aes(x=x_050), colour = "red")+
+  geom_density(aes(x=x_051))+ geom_density(aes(x=x_052))+ geom_density(aes(x=x_053))+ 
+  geom_density(aes(x=x_054))+ geom_density(aes(x=x_055))+ geom_density(aes(x=x_056))+ 
+  geom_density(aes(x=x_057))+ geom_density(aes(x=x_058))+ geom_density(aes(x=x_059))+ 
+  geom_density(aes(x=x_060), colour = "red")+
+  geom_density(aes(x=x_061))+ geom_density(aes(x=x_062))+ geom_density(aes(x=x_063))+ 
+  geom_density(aes(x=x_064))+ geom_density(aes(x=x_065))+ geom_density(aes(x=x_066))+ 
+  geom_density(aes(x=x_067))+ geom_density(aes(x=x_068))+ geom_density(aes(x=x_069))+ 
+  geom_density(aes(x=x_070), colour = "red")+
+  geom_density(aes(x=x_071))+ geom_density(aes(x=x_072))+ geom_density(aes(x=x_073))+ 
+  geom_density(aes(x=x_074))+ geom_density(aes(x=x_075))+ geom_density(aes(x=x_076))+ 
+  geom_density(aes(x=x_077))+ geom_density(aes(x=x_078))+ geom_density(aes(x=x_079))+ 
+  geom_density(aes(x=x_080), colour = "red")+
+  geom_density(aes(x=x_081))+ geom_density(aes(x=x_082))+ geom_density(aes(x=x_083))+ 
+  geom_density(aes(x=x_084))+ geom_density(aes(x=x_085))+ geom_density(aes(x=x_086))+ 
+  geom_density(aes(x=x_087))+ geom_density(aes(x=x_088))+ geom_density(aes(x=x_089))+ 
+  geom_density(aes(x=x_090), colour = "red")+
+  geom_density(aes(x=x_091))+ geom_density(aes(x=x_092))+ geom_density(aes(x=x_093))+ 
+  geom_density(aes(x=x_094))+ geom_density(aes(x=x_095))+ geom_density(aes(x=x_096))+ 
+  geom_density(aes(x=x_097))+ geom_density(aes(x=x_098))+ geom_density(aes(x=x_099))+ 
+  geom_density(aes(x=x_100), colour = "red")
+  labs(title="x_001 to x_100")
+```
+
+```{r}
+#nearZeroVar(meats_wtr_train)
+```
