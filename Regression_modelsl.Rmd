@@ -24,6 +24,8 @@ library(xgboost)
 library(reshape2)
 library(patchwork)
 library(yardstick)
+
+options(warn=-1)
 ```
 
 ### Getting the dataset:
@@ -82,7 +84,8 @@ mod_xgboost <- train(water ~ .,
                      data = meats_train,
                      method = 'xgbTree',
                      metric = my_metric,
-                     trControl = my_ctrl)
+                     trControl = my_ctrl,
+                     verbosity = 0)
 
 set.seed(123)
 mod_rf <- train(water ~ .,
